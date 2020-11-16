@@ -1,0 +1,5 @@
+name calories sodium alcohol cost
+Budweiser 144 15 4.7 0.43
+Schlitz 151 19 4.9 0.43
+Coors 140 18 4.6 0.44
+Budweiser 144 15 4.7 0.43
