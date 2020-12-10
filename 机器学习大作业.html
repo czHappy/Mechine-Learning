@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>机器学习大作业.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<h1 id="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%93%E8%AF%BE%E6%8A%A5%E5%91%8A">机器学习结课报告</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%93%E8%AF%BE%E6%8A%A5%E5%91%8A">机器学习结课报告</a>
+<ul>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9">实验内容</a></li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE">实验数据</a>
+<ul>
+<li><a href="#iris%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D">Iris数据集介绍</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E9%A2%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95">数据读取与预处理方法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E6%8C%87%E6%A0%87">实验指标</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#precision">precision</a></li>
+<li><a href="#recall">recall</a></li>
+<li><a href="#f1-score">f1-score</a></li>
+<li><a href="#%E6%9D%83%E9%87%8D%E5%B9%B3%E5%9D%87">权重平均</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90">数据集分析</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95">实验方法</a>
+<ul>
+<li><a href="#k-means">K-Means</a></li>
+<li><a href="#dbscan">DBSCAN</a></li>
+<li><a href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA">支持向量机</a></li>
+<li><a href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%96%B9%E6%B3%95">神经网络方法</a></li>
+<li><a href="#knnk-near-neighbor">KNN（K Near Neighbor）</a></li>
+<li><a href="#%E5%A4%9A%E9%A1%B9%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%E5%9B%9E%E5%BD%92">多项逻辑斯蒂回归</a></li>
+<li><a href="#%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97">决策树与随机森林</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8A%A5%E5%91%8A%E6%80%BB%E7%BB%93">报告总结</a>
+<ul>
+<li><a href="#%E5%90%84%E7%A7%8D%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%9A%84%E5%90%84%E9%A1%B9%E6%8C%87%E6%A0%87%E6%9D%83%E9%87%8D%E5%B9%B3%E5%9D%87">各种分类算法的各项指标权重平均</a></li>
+<li><a href="#%E5%88%86%E6%9E%90">分析</a></li>
+<li><a href="#%E5%90%8E%E8%AE%B0">后记</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9">实验内容</h2>
+<ul>
+<li>运用机器学习相关知识，对iris数据集进行分类</li>
+<li>运用相关评价指标，评估8种机器学习模型的分类效果</li>
+<li>总结所使用机器学习的核心算法，加深对知识的理解</li>
+</ul>
+<h2 id="%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE">实验数据</h2>
+<h3 id="iris%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D">Iris数据集介绍</h3>
+<ul>
+<li>Iris数据集是常用的分类实验数据集，由Fisher, 1936收集整理。Iris也称鸢尾花卉数据集，是一类多重变量分析的数据集。</li>
+<li>数据集包含150个数据样本，分为3类，每类50个数据，每个数据包含4个属性。可通过花萼长度，花萼宽度，花瓣长度，花瓣宽度4个属性预测鸢尾花卉属于（Setosa，Versicolour，Virginica）三个种类中的哪一类。</li>
+</ul>
+<h3 id="%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E9%A2%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95">数据读取与预处理方法</h3>
+<ul>
+<li>可采用sklearn自带的load_iris()方法读取，并将数据集划分为训练集和测试集，比例为4:1<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getdata</span><span class="hljs-params">()</span>:</span>
+    train_data=load_iris()
+    data=train_data[<span class="hljs-string">'data'</span>]
+    labels=train_data[<span class="hljs-string">'target'</span>].reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
+    total_data=np.hstack((data,labels))
+    np.random.shuffle(total_data)
+    train=total_data[<span class="hljs-number">0</span>:<span class="hljs-number">120</span>,:<span class="hljs-number">-1</span>]
+    test=total_data[<span class="hljs-number">120</span>:,:<span class="hljs-number">-1</span>]
+    train_label=total_data[<span class="hljs-number">0</span>:<span class="hljs-number">120</span>,<span class="hljs-number">-1</span>].reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
+    test_label=total_data[<span class="hljs-number">120</span>:,<span class="hljs-number">-1</span>].reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> data,labels,train,test,train_label,test_label
+
+
+</div></code></pre>
+</li>
+<li>预处理采用了StandardScaler归一化方法，使得经过处理的数据符合标准正态分布，即均值为0，标准差为1
+<ul>
+<li>$x^* = {x - \mu \over \sigma}$</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> StandardScaler
+scaler = StandardScaler()
+scaler.fit(train)
+train=scaler.transform(train)
+<span class="hljs-comment"># 4.对测试数据进行归一化处理</span>
+test=scaler.transform(test)
+
+</div></code></pre>
+</li>
+</ul>
+<h2 id="%E5%AE%9E%E9%AA%8C%E6%8C%87%E6%A0%87">实验指标</h2>
+<h3 id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</h3>
+<ul>
+<li>
+<p>真正(True Positive , TP)：被模型预测为正的正样本</p>
+</li>
+<li>
+<p>假正(False Positive , FP)：被模型预测为正的负样本</p>
+</li>
+<li>
+<p>假负(False Negative , FN)：被模型预测为负的正样本</p>
+</li>
+<li>
+<p>真负(True Negative , TN)：被模型预测为负的负样本</p>
+<p><img src="imgs/4.png" alt=""></p>
+</li>
+</ul>
+<h3 id="precision">precision</h3>
+<ul>
+<li>精确率是精确性的指标，表示被分类器正确分为正例的个数(TP)占被分类器分为正例的样本(TP+FP)的比重。</li>
+<li>$precision = {TP \over TP + FP}$</li>
+</ul>
+<h3 id="recall">recall</h3>
+<ul>
+<li>召回率是覆盖面的度量，也就是被分类器正确分为正例的个数(TP)占原始数据中全部正例(TP+FN)的比重。</li>
+<li>$recall = {TP \over TP + FN}$</li>
+</ul>
+<h3 id="f1-score">f1-score</h3>
+<ul>
+<li>精确率和召回率的调和平均数</li>
+<li>$F_{\beta} = (1 + \beta^2) * {precision * recall \over {\beta}^2 * precision+ recall }$</li>
+<li>$\beta = 1$时为F1-score</li>
+</ul>
+<h3 id="%E6%9D%83%E9%87%8D%E5%B9%B3%E5%9D%87">权重平均</h3>
+<ul>
+<li>权重平均其实就是所有类别的precision recall 以及 f1-score的加权平均</li>
+</ul>
+<h3 id="%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90">数据集分析</h3>
+<ul>
+<li>
+<p>对鸢尾花数据集每个特征的分布情况，并对4个特征进行关联性分析，得到如下结果</p>
+<p><img src="imgs/1.png" alt=""></p>
+</li>
+<li>
+<p>对角线部分: 核密度估计图（Kernel Density Estimation），就是用来看某一个变量分布情况，横轴对应着该变量的值，纵轴对应着该变量的密度（可以理解为出现频次）。可以观察到speal的长宽基本符合高斯分布，而petal则不符合。</p>
+</li>
+<li>
+<p>非对角线部分：两个变量之间分布的关联散点图。将任意两个变量进行配对，以其中一个为横坐标，另一个为纵坐标，将所有的数据点绘制在图上，用来衡量两个变量的关联度。可以观察到数据集的可分度是比较强的，任意拿出两个特征，都存在着明显的边界，证明该数据集是存在分类依据的，我们的目的就是通过机器学习方法找出这种依据。从数学角度看，就是找到一个符合这种分布的输入输出映射关系。</p>
+</li>
+</ul>
+<h2 id="%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95">实验方法</h2>
+<h3 id="k-means">K-Means</h3>
+<ul>
+<li>
+<p>算法步骤</p>
+<ul>
+<li>
+<ol>
+<li>选择初始化的$k$个样本作为初始聚类中心 $a = a_1, a_2, ..., a_k$</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>针对数据集中每个样本 $x_i$ 计算它到 $k$ 个聚类中心的距离, 并将其分到距离最小的聚类中心所对应的类中</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>针对每个类别 $a_j$ ，重新计算它的聚类中心 $a_j = {1 \over |c_i|} \sum_{x \in c_i} x$ （即属于该类的所有样本的质心）</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>重复上面 2 3 两步操作，直到达到某个中止条件（迭代次数、最小误差变化等）。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>手肘法确定$K$值</p>
+<ul>
+<li>
+<p>由于K-Means是无监督方法，事先也必须指定要聚类成多少类别。如果对于一个完全陌生的分类任务，实现不知道如何确定有多少类。</p>
+</li>
+<li>
+<p>可以通过手肘法,当k小于真实聚类数时，由于k的增大会大幅增加每个簇的聚合程度，故SSE的下降幅度会很大，而当k到达真实聚类数时，再增加k所得到的聚合程度回报会迅速变小，所以SSE的下降幅度会骤减，然后随着k值的继续增大而趋于平缓，也就是说SSE和k的关系图是一个手肘的形状，而这个肘部对应的k值就是数据的真实聚类数。</p>
+</li>
+<li>
+<p>核心指标：SSE，误差平方和 $SSE = \sum_{i=1}^k \sum_{p \in C_i}|p - m_i|^2$</p>
+<p><img src="imgs/2.png" alt=""></p>
+</li>
+<li>
+<p>从上图可以看出当K=3时，SSE下降速度明显变缓可以认为K的合适取值为3，与预期相符合</p>
+</li>
+</ul>
+</li>
+<li>
+<p>实验结果</p>
+<ul>
+<li>
+<p>混淆矩阵</p>
+<p><img src="imgs/3.png" alt=""></p>
+</li>
+<li>
+<p>分类指标</p>
+<table>
+<thead>
+<tr>
+<th>cluster</th>
+<th>precision</th>
+<th>recall</th>
+<th>f1-score</th>
+<th>support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.7</td>
+<td>0.7</td>
+<td>0.7</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.7</td>
+<td>0.7</td>
+<td>0.7</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="dbscan">DBSCAN</h3>
+<ul>
+<li>
+<p>算法步骤</p>
+<ul>
+<li>
+<p>DBSCAN的核心思想是从某个核心点出发，不断向密度可达的区域扩张，从而得到一个包含核心点和边界点的最大化区域，区域中任意两点密度相连。由于其概念较多，不方便一一赘述，下面只列出简要的伪码</p>
+<pre class="hljs"><code><div>
+DBSCAN(D, eps, MinPts)
+C = <span class="hljs-number">0</span>                                          
+<span class="hljs-keyword">for</span> each unvisited point P <span class="hljs-keyword">in</span> dataset D        
+    mark P <span class="hljs-keyword">as</span> visited                           
+    NeighborPts = regionQuery(P, eps)      //计算这个点的邻域    
+    <span class="hljs-keyword">if</span> sizeof(NeighborPts) &lt; MinPts             
+      mark P <span class="hljs-keyword">as</span> NOISE                          
+    <span class="hljs-keyword">else</span>                                        
+      C = next cluster                   //作为核心点，根据该点创建一个新类簇
+      expandCluster(P, NeighborPts, C, eps, MinPts)   //根据该核心点扩展类别
+        
+  expandCluster(P, NeighborPts, C, eps, MinPts)
+  add P to cluster C                            //扩展类别，核心点先加入
+  <span class="hljs-keyword">for</span> each point P<span class="hljs-string">' in NeighborPts                    
+      if P'</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> visited
+          mark P<span class="hljs-string">' as visited                              
+          NeighborPts'</span> = regionQuery(P<span class="hljs-string">', eps)    //如果该点为核心点，则扩充该类别
+          if sizeof(NeighborPts'</span>) &gt;= MinPts
+              NeighborPts = NeighborPts joined <span class="hljs-keyword">with</span> NeighborPts<span class="hljs-string">'
+      if P'</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> yet member of any cluster   //如果邻域内点不是核心点，并且无类别，比如噪音数据，则加入此类别
+          add P<span class="hljs-string">' to cluster C
+          
+  regionQuery(P, eps)                                       //计算点P的邻域
+  return all points within P'</span>s eps-neighborhood
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>实验过程及结果</p>
+<ul>
+<li>
+<p>调参数$eps \in [0.2, 1.0] step=0.01 $ 和$min_samples \in [3,8] step=1$,选择得到最大准确率的模型，如下图所示，红色点为最高点，坐标为(0.42, 5, 0.786)</p>
+<p><img src="imgs/5.png" alt=""></p>
+</li>
+<li>
+<p>混淆矩阵(其中0实际上是-1，即噪声类，123分别为鸢尾花的三类)</p>
+<p><img src="imgs/6.png" alt=""></p>
+</li>
+<li>
+<p>分类指标</p>
+<table>
+<thead>
+<tr>
+<th>cluster</th>
+<th>precision</th>
+<th>recall</th>
+<th>f1-score</th>
+<th>support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1.00</td>
+<td>0.96</td>
+<td>0.98</td>
+<td>50</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1.00</td>
+<td>0.74</td>
+<td>0.85</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.92</td>
+<td>0.66</td>
+<td>0.77</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>方案评价</p>
+<ul>
+<li>准确率高，几乎没有错分的情况。但是噪声率较大，达到近20%，故而导致召回率较低。</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA">支持向量机</h3>
+<ul>
+<li>算法
+<ul>
+<li>这里不详细展开支持向量机的原理以及推导过程，只简要谈谈自己对支持向量机的理解。</li>
+<li>支持向量机（support vector machines, SVM）是一种二分类模型，它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机</li>
+<li>SVM还包括核技巧，这使它拓展推广成为非线性分类器。SVM的的学习策略就是间隔最大化，可形式化为一个求解凸二次规划的问题。</li>
+</ul>
+</li>
+<li>实验过程
+<ul>
+<li>
+<p>实验不同的高斯核函数测试准确率</p>
+<table>
+<thead>
+<tr>
+<th>kernel</th>
+<th>precision</th>
+<th>penalty</th>
+<th>gamma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RBF</td>
+<td>0.92</td>
+<td>0.8</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>0.97</td>
+<td>0.8</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>Poly</td>
+<td>0.92</td>
+<td>0.8</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>Sigmoid</td>
+<td>0.88</td>
+<td>0.8</td>
+<td>auto</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>混淆矩阵(linear)</p>
+<p><img src="imgs/7.png" alt=""></p>
+</li>
+<li>
+<p>分类指标</p>
+<table>
+<thead>
+<tr>
+<th>cluster</th>
+<th>precision</th>
+<th>recall</th>
+<th>f1-score</th>
+<th>support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1.00</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>9</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1.00</td>
+<td>0.91</td>
+<td>0.95</td>
+<td>11</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.91</td>
+<td>1.00</td>
+<td>0.95</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%96%B9%E6%B3%95">神经网络方法</h3>
+<ul>
+<li>
+<p>算法</p>
+<ul>
+<li>神经网络概念此处不再赘述。本质上是一个多层神经元阵列的一个连接，通过反向传播算法不断调节神经元的参数，最终学习到训练集的分布特征。现代神经网络有全连接的神经网络，也有CNN等，本质上是一种万能拟合器。</li>
+<li>本实验搭建了4层神经网络，使用relu函数作为激活函数，最后一层加入dropout随机失活20%的神经元，以抑制过拟合。优化器选用Adam,初始学习率为0.02,损失函数为交叉熵损失。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IrisNet</span><span class="hljs-params">(nn.Module)</span>:</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+      super(IrisNet,self).__init__()
+      self.fc = nn.Sequential( <span class="hljs-comment">#添加神经元以及激活函数</span>
+          nn.Linear(<span class="hljs-number">4</span>,<span class="hljs-number">18</span>),
+          nn.ReLU(),
+          nn.Linear(<span class="hljs-number">18</span>,<span class="hljs-number">10</span>),
+          nn.ReLU(),
+          nn.Linear(<span class="hljs-number">10</span>,<span class="hljs-number">3</span>),
+          nn.Dropout(<span class="hljs-number">0.2</span>)
+      )
+      self.mse=nn.CrossEntropyLoss()
+      self.optim=torch.optim.Adam(params=self.parameters(),lr=<span class="hljs-number">0.02</span>)
+      
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self,inputs)</span>:</span>
+      outputs=self.fc(inputs)
+      <span class="hljs-keyword">return</span> outputs
+  
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span><span class="hljs-params">(self,x,label)</span>:</span>
+      out=self.forward(x) <span class="hljs-comment">#正向传播</span>
+      loss=self.mse(out,label) <span class="hljs-comment">#根据正向传播计算损失</span>
+      self.optim.zero_grad()<span class="hljs-comment">#梯度清零</span>
+      loss.backward()<span class="hljs-comment">#计算梯度</span>
+      self.optim.step()<span class="hljs-comment">#应用梯度更新参数</span>
+      
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test</span><span class="hljs-params">(self,test_)</span>:</span>
+      <span class="hljs-keyword">return</span> self.fc(test_)
+</div></code></pre>
+<ul>
+<li>
+<p>网络结构可视化</p>
+<p><img src="imgs/8.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>混淆矩阵(linear)</p>
+<p><img src="imgs/9.png" alt=""></p>
+</li>
+<li>
+<p>分类指标</p>
+<table>
+<thead>
+<tr>
+<th>cluster</th>
+<th>precision</th>
+<th>recall</th>
+<th>f1-score</th>
+<th>support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>14</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>方案评价：本实验报告神经网络取得了最好的效果，分类准确率达到了100%。原因一方面是神经网络的强大性能，另一方面是数据集比较小，有可能过拟合。</p>
+</li>
+</ul>
+<h3 id="knnk-near-neighbor">KNN（K Near Neighbor）</h3>
+<ul>
+<li>
+<p>算法思想</p>
+<ul>
+<li>物以类聚，人以群分。如果一个样本在特征空间中的K个最相似(即特征空间中最邻近)的样本中的大多数属于某一个类别，则该样本也属于这个类别。也就是说，该方法在定类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。</li>
+<li>距离计算：欧式距离 曼哈顿距离 等等。</li>
+</ul>
+</li>
+<li>
+<p>K值选择</p>
+<ul>
+<li>KNN算法不需要训练过程，最核心的是K值的选择。</li>
+<li>K值较大，模型变得简单，当K等于训练集的大小时无论输入是什么都简单预测为训练集的多数类。</li>
+<li>K值较小时，模型变得非常敏感，容易发生过拟合。</li>
+</ul>
+</li>
+<li>
+<p>交叉验证(Cross-validation)</p>
+<ul>
+<li>对整体数据集使用S折交叉验证评估，最合适的K值(K = 7),如下图实验结果所示，选取K=7时可以达到最高准确率0.98。最终在测试集上取得准确率为0.967</li>
+</ul>
+<p><img src="imgs/10.png" alt=""></p>
+</li>
+<li>
+<p>混淆矩阵</p>
+<p><img src="imgs/11.png" alt=""></p>
+</li>
+<li>
+<p>评价指标</p>
+<table>
+<thead>
+<tr>
+<th>cluster</th>
+<th>precision</th>
+<th>recall</th>
+<th>f1-score</th>
+<th>support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.89</td>
+<td>1.00</td>
+<td>0.94</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1.00</td>
+<td>0.92</td>
+<td>0.96</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="%E5%A4%9A%E9%A1%B9%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%E5%9B%9E%E5%BD%92">多项逻辑斯蒂回归</h3>
+<ul>
+<li>
+<p>算法思想</p>
+<ul>
+<li>
+<p>逻辑斯谛回归（logistic regression）属于对数线性模型，所以也被称为对数几率回归。这里要注意，虽然带有回归的字眼，但是该模型是一种分类算法，逻辑斯谛回归是一种线性分类器，针对的是线性可分问题。</p>
+</li>
+<li>
+<p>利用logistic回归进行分类的主要思想是：根据现有的数据对分类边界线建立回归公式，以此进行分类。这里的“回归”一词源于最佳拟合，表示要找到最佳拟合参数集。</p>
+</li>
+<li>
+<p>多项逻辑斯蒂回归模型实质上是一个条件概率分布</p>
+<ul>
+<li>$P(Y=0|x) = {1 \over 1+ exp(w*x+b)}$</li>
+<li>$P(Y=1|x) = 1 - P(Y=0|x)$</li>
+</ul>
+</li>
+<li>
+<p>使用极大似然估计法估计模型参数$w,b$，问题转化为以对数似然函数为目标函数的最优化问题，可以采用梯度下降法迭代。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>混淆矩阵</p>
+<p><img src="imgs/12.png" alt=""></p>
+</li>
+<li>
+<p>评价指标</p>
+<table>
+<thead>
+<tr>
+<th>cluster</th>
+<th>precision</th>
+<th>recall</th>
+<th>f1-score</th>
+<th>support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>9</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1.00</td>
+<td>0.90</td>
+<td>0.95</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.92</td>
+<td>1.00</td>
+<td>0.96</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97">决策树与随机森林</h3>
+<ul>
+<li>
+<p>决策树算法思想(以ID3算法为例)</p>
+<ul>
+<li>ID3算法的核心是在决策树各个节点上应用信息增益准则来选择特征，递归构建。
+从根节点开始，对结点计算所有可能的特征的信息增益，选择信息增益最大的特征为结点特征，以该特征的不同取值建立子节点，再对子节点递归地调用上述方法。</li>
+<li>信息增益：用白话说就是知道了这个特征的值，事物类别的不确定性能下降多少。
+<ul>
+<li>设随机变量(X,Y)联合概率分布 $P(X=x_i,Y=y_i) = p_{ij}$</li>
+<li>经验熵：$H(D) = -\sum_{i=1}^np_ilog{p_i}$</li>
+<li>条件熵：$H(Y|X) = -\sum_{i=1}^np_iH(Y|X=x_i)x_i， p_i=P(x=x_i)$</li>
+<li>特征A对训练数据集D的信息增益 $g(D,A) = H(D) - H(D|A)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>随机森林</p>
+<ul>
+<li>顾名思义，是用随机的方式建立一个森林，森林里面有很多的决策树组成，随机森林的每一棵决策树之间是没有关联的。</li>
+<li>构造过程
+<ul>
+<li>假如有N个样本，则有放回的随机选择N个样本(每次随机选择一个样本，然后返回继续选择)。这选择好了的N个样本用来训练一个决策树，作为决策树根节点处的样本</li>
+<li>假如有N个样本，则有放回的随机选择N个样本(每次随机选择一个样本，然后返回继续选择)。这选择好了的N个样本用来训练一个决策树，作为决策树根节点处的样本</li>
+<li>决策树形成过程中每个节点都要按照步骤2来分裂（很容易理解，如果下一次该节点选出来的那一个属性是刚刚其父节点分裂时用过的属性，则该节点已经达到了叶子节点，无须继续分裂了）。一直到不能够再分裂为止。注意整个决策树形成过程中没有进行剪枝。</li>
+<li>按照步骤1~3建立大量的决策树，这样就构成了随机森林</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>实验结果</p>
+<p><img src="imgs/15.PNG" alt=""></p>
+</li>
+</ul>
+<h2 id="%E6%8A%A5%E5%91%8A%E6%80%BB%E7%BB%93">报告总结</h2>
+<h3 id="%E5%90%84%E7%A7%8D%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%9A%84%E5%90%84%E9%A1%B9%E6%8C%87%E6%A0%87%E6%9D%83%E9%87%8D%E5%B9%B3%E5%9D%87">各种分类算法的各项指标权重平均</h3>
+<ul>
+<li>
+<p>统计表</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>precision</th>
+<th>recall</th>
+<th>f1-score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K-Means</td>
+<td>0.8</td>
+<td>0.8</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>DBSCAN</td>
+<td>0.97</td>
+<td>0.79</td>
+<td>0.87</td>
+</tr>
+<tr>
+<td>SVM-Linear</td>
+<td>0.97</td>
+<td>0.97</td>
+<td>0.97</td>
+</tr>
+<tr>
+<td>NN</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>KNN</td>
+<td>0.97</td>
+<td>0.97</td>
+<td>0.97</td>
+</tr>
+<tr>
+<td>Logistic</td>
+<td>0.97</td>
+<td>0.97</td>
+<td>0.97</td>
+</tr>
+<tr>
+<td>ID3</td>
+<td>0.93</td>
+<td>0.93</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>Random Forest</td>
+<td>0.97</td>
+<td>0.97</td>
+<td>0.97</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>统计图</p>
+<p><img src="imgs/16.png" alt=""></p>
+</li>
+</ul>
+<h3 id="%E5%88%86%E6%9E%90">分析</h3>
+<ul>
+<li>
+<p>从效果上看，在所选择的8种机器学习算法中，神经网络(NN)达到了最好的分类效果，也有一些算法不尽人意如DBSCN,通过各种调参还是出现了很高的噪声率。</p>
+</li>
+<li>
+<p>从算法-数据集的匹配性上看，在这次实验中，大多数算法都能达到95%以上的精准率，原因是这些算法对iris数据集表现出了有效性，部分算法效果不好可能是自身局限性，并不适合iris数据集的特征分布。比如DBSCAN算法，当两类数据点紧密相连但又线性可分时，可能分类效果就比较差，而其他算法效果可能比较好。在数据可视化部分可以看到iris数据集特征分布有这种特性。</p>
+</li>
+</ul>
+<h3 id="%E5%90%8E%E8%AE%B0">后记</h3>
+<ul>
+<li>借机器学习课程大作业的机会，我将课程中多种机器学习算法仔细研究了一遍，并且通过代码实践验证了各类算法的有效性。一方面感叹机器学习算法的精妙，另一方面又感受到自己对这些算法的理解还不够深彻，特别是对其中艰深的数学原理的理解。所幸我能站在巨人的肩膀上，亲身体会到了这些算法确实表现出了优异的性能。由于时间精力和能力有限，本次大作业还有些许不足之处。希望在之后的学习中，能够进一步理解这些算法的本质，并在科研的过程中加以运用。</li>
+</ul>
+
+</body>
+</html>
